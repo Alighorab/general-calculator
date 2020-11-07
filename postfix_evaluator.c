@@ -2,11 +2,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
+#include <math.h>
 #include "postfix_evaluator.h"
 
 #define ERROR -999999999999
 
 double EvaluatePostfixExpression(char *expression) {
+	if( !strcmp(expression, "") || expression == NULL )
+		return ERROR;
+		
 	Stack_t stack;
 	StackInit(&stack);
 	
@@ -25,13 +29,10 @@ double EvaluatePostfixExpression(char *expression) {
 		*/
 		if(IsDigit(ch))
 			StackPush(ch, &stack);
-		
 		else if(IsFloatingPoint(ch))
 			StackPush(ch, &stack);
-			
 		else if(IsNewToken(ch))
 			StackPush(ch, &stack);
-			
 		else if(IsSign(ch)) {
 			// Don't push two signs on each others
 			if( StackEmpty(&stack) || (StackTop(&stack) == ' ') )
@@ -42,7 +43,6 @@ double EvaluatePostfixExpression(char *expression) {
 				return ERROR;
 			}
 		}
-		
 		else if(IsOperator(ch)) {
 			if( !IsDigit( StackTop(&stack) ) ) {
 				RemoveTop(&stack);
@@ -66,6 +66,10 @@ double EvaluatePostfixExpression(char *expression) {
 
 void PopOperand(double *operand, Stack_t *ps) {
 #define MAX_SIZE 10
+
+	if( operand == NULL || ps == NULL ) 
+		return;
+	
 	char *op = (char*) malloc(MAX_SIZE), *temp = NULL;
 	memset(op, '\0', MAX_SIZE);
 	int i = 0;
@@ -81,7 +85,9 @@ void PopOperand(double *operand, Stack_t *ps) {
 }
 
 void PushResult(double result, Stack_t *ps) {
-	#define MAX_NUM 20
+#define MAX_NUM 20
+	if(ps == NULL) 
+		return;
 	char str[MAX_NUM] = "";
 	
 	// convert result from int to string.
@@ -131,28 +137,14 @@ double Div(double operand1, double operand2) {
 	return (operand1 / operand2);
 }
 
-double Pow(double base, double exponent) {
-	double result = 1;
-	while (exponent != 0) {
-        result *= base;
-        --exponent;
-    }
-	return result;
+double Pow(double base, double exponent) {	
+	return pow(base, exponent);
 }
 
 double Round(double var) 
-{ 
-    // 37.66666 * 100 =3766.66 
-    // 3766.66 + .5 =3767.16    for rounding off value 
-    // then type cast to int so value is 3767 
-    // then divided by 100 so the value converted into 37.67 
-    float value = (int)(var * 100 + .5); 
-    return (float)value / 100; 
+{  
+    return round(var);
 } 
-
-int ToInteger(char ch) {
-	return ch - '0';
-}
 
 void Swap(char *e1, char *e2) {
 	char temp = *e1;
@@ -161,21 +153,17 @@ void Swap(char *e1, char *e2) {
 }
 
 char* reverseString(char* str) 
-{ 
-    // find length of string 
+{
+	if( !strcmp(str, "") || str == NULL )
+		return NULL;
     int len = strlen(str); 
-  
-    // create a dynamic pointer char array 
     char *rev = (char*) malloc(len + 1); 
-  
-    // copy of string to ptr array 
     strcpy(rev, str); 
   
     // Swap character starting from two corners 
     for (int i = 0, j = len - 1; i < j; i++, j--)
         Swap(&rev[i], &rev[j]);        
       
-    // return pointer of the reversed string 
     return rev; 
 }
 

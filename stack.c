@@ -3,14 +3,16 @@
 
 void StackInit(Stack_t *ps)
 {
-	ps->top = '\0';
-	ps->size = 0;
+	if(ps != NULL) {
+		ps->top = '\0';
+		ps->size = 0;
+	}
 }
 
 void StackPush(StackEntry_t e, Stack_t *ps) {
 	StackNode_t *pNode;
 	
-	if((pNode = (StackNode_t*)malloc(sizeof(StackNode_t)))) {
+	if( (ps != NULL) && (pNode = (StackNode_t*)malloc(sizeof(StackNode_t))) ) {
 		pNode->entry = e;
 		ps->size++;
 		pNode->next = ps->top;
@@ -19,20 +21,24 @@ void StackPush(StackEntry_t e, Stack_t *ps) {
 }
 
 void StackPop(StackEntry_t *pe, Stack_t *ps) {
-	StackNode_t *pNode;
-	*pe = ps->top->entry;
-	pNode = ps->top;
-	ps->top = ps->top->next;
-	free(pNode);
-	ps->size--;
+	if( (pe != NULL) && (ps != NULL) ) {
+		StackNode_t *pNode;
+		*pe = ps->top->entry;
+		pNode = ps->top;
+		ps->top = ps->top->next;
+		SafeFree(pNode);
+		ps->size--;
+	}
 }
 
 void RemoveTop(Stack_t *ps) {
-	StackNode_t *pNode;
-	pNode = ps->top;
-	ps->top = ps->top->next;
-	free(pNode);
-	ps->size--;
+	if(ps != NULL) {
+		StackNode_t *pNode;
+		pNode = ps->top;
+		ps->top = ps->top->next;
+		SafeFree(pNode);
+		ps->size--;
+	}
 }
 
 
@@ -53,13 +59,15 @@ int StackSize(Stack_t *ps) {
 }
 
 void ClearStack(Stack_t *ps) {
-	StackNode_t *pNode = ps->top;
-	while(pNode) {
-		pNode = pNode->next;
-		free(ps->top);
-		ps->top = pNode;
+	if(ps != NULL) {
+		StackNode_t *pNode = ps->top;
+		while(pNode) {
+			pNode = pNode->next;
+			SafeFree(ps->top);
+			ps->top = pNode;
+		}
+		ps->size = 0;
 	}
-	ps->size = 0;
 }
 
 void TraverseStack(Stack_t *ps, void (*pf) (StackEntry_t)) {
