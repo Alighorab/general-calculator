@@ -1,9 +1,0 @@
--Ic:\Users\aligh\gcc\include\c++\9.1.0
--Ic:\Users\aligh\gcc\include\c++\9.1.0\x86_64-w64-mingw32
--Ic:\Users\aligh\gcc\include\c++\9.1.0\backward
--Ic:\Users\aligh\gcc\lib\gcc\x86_64-w64-mingw32\9.1.0\include
--Ic:\Users\aligh\gcc\lib\gcc\x86_64-w64-mingw32\9.1.0\include-fixed
--Ic:\Users\aligh\gcc\x86_64-w64-mingw32\include
--I"E:\Study\Computer Science\C\Examples\Data Stuctures\Walled yousef\Stack\Application\Calculator\calculator"
--target
-x86_64-pc-windows-gnu
