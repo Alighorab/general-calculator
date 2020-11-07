@@ -16,7 +16,7 @@ char* ConvertToPostfix(char infix[], char postfix[]) {
 				3- operator: pop two elements from stack and do operation on them, then push the result.
 				4- right paranthese: wait untile finding the left.
 				5- left paranthese: pop all operators and push it into postfix array.
-				6- dot.. soon..
+				6- dot: push it.
 		*/
 		if(IsSign(ch))
 			postfix[j++] = ch;

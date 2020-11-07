@@ -25,7 +25,7 @@ double EvaluatePostfixExpression(char *expression) {
 			2- negative sign: push it if there is a space in top.
 			3- operator: pop two elements from stack and do operation on them, then push the result.
 			4- token identifier: push it.
-			5- dot.. soon..
+			5- dot: push it.
 		*/
 		if(IsDigit(ch))
 			StackPush(ch, &stack);
