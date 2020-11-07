@@ -69,3 +69,11 @@ void TraverseStack(Stack_t *ps, void (*pf) (StackEntry_t)) {
 		pNnode = pNnode->next;
 	}
 }
+
+void SaferFree(void **pp)
+{
+   if (pp != NULL && *pp != NULL) {
+       free(*pp);
+       *pp = NULL;
+   }
+}

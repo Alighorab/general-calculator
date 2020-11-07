@@ -1,6 +1,8 @@
 #ifndef STACK_H_
 #define STACK_H_
 
+#define SafeFree(p) SaferFree((void**)&(p))
+
 typedef char StackEntry_t;
 
 typedef struct stacknode {
@@ -66,6 +68,9 @@ void TraverseStack(Stack_t *ps, void (*pf) (StackEntry_t));
 * Post condition: the last element entered is returned but still
   in stack.
 **/
+
+void SaferFree(void **pp);
+
 
 
 #endif /* STACK_H_ */

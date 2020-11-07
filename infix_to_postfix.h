@@ -3,7 +3,7 @@
 
 #define RIGHT_PARANTHESE '('
 #define LEFT_PARANTHESE  ')'
-#define NEW_TOKEN_ID ' '
+#define NEW_TOKEN_INDICATOR ' '
 
 char* ConvertToPostfix(char infix[], char postfix[]);
 int IsSign(char c);
@@ -13,6 +13,7 @@ int IsDigit(char c);
 int IsNewToken(char c);
 int IsRightParanthese(char c);
 int IsLeftParanthese(char c);
+int IsFloatingPoint(char c);
 	
 int Precedence(char operator1, char operator2);
 

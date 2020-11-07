@@ -3,19 +3,21 @@
 #include "infix_to_postfix.h"
 #include "stack.h"
 
-long EvaluatePostfixExpression(char *expression);
+double EvaluatePostfixExpression(char *expression);
 
-void PopOperand(long *operand, Stack_t *ps);
-void PushResult(long result, Stack_t *ps);
+void PopOperand(double *operand, Stack_t *ps);
+void PushResult(double result, Stack_t *ps);
 
-long Calculator(long operand1, long operand2 , char operator);
-long Add(long operand1, long operand2);
-long Sub(long operand1, long operand2);
-long Mul(long operand1, long operand2);
-long Div(long operand1, long operand2);
-long Pow(long base, long exponent);
+double Calculator(double operand1, double operand2 , char operator);
+double Add(double operand1, double operand2);
+double Sub(double operand1, double operand2);
+double Mul(double operand1, double operand2);
+double Div(double operand1, double operand2);
+double Pow(double base, double exponent);
+double Round(double var);
 
 int ToInteger(char ch);
-
+char* reverseString(char* str);
+void Swap(char *e1, char *e2);
 
 #endif

@@ -1,0 +1,1 @@
+Debug/main.c.o Debug/postfix_evaluator.c.o Debug/infix_to_postfix.c.o Debug/stack.c.o   
