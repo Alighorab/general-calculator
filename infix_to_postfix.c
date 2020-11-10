@@ -65,6 +65,7 @@ char* ConvertToPostfix(char infix[], char postfix[]) {
 		postfix[j++] = NEW_TOKEN_INDICATOR;
 		postfix[j++] = op;
 	}
+	postfix[j] = '\0';
 	
 	return postfix;
 }
